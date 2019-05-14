@@ -40,13 +40,3 @@ RUN a2enmod rewrite
 RUN echo "memory_limit=2048M" > /usr/local/etc/php/conf.d/memory-limit.ini
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-ENV ROOT_DOCUMENT /var/www/html/
-COPY src /var/www/html/
-
-RUN cd $ROOT_DOCUMENT \
-	&& chmod -R 0777 Magento-CE-2-3-1/var \
-	&& chmod -R 0777 Magento-CE-2-3-1/pub \
-	&& chmod -R 0777 Magento-CE-2-3-1/generated
-
-RUN chown -R www-data:www-data $ROOT_DOCUMENT
